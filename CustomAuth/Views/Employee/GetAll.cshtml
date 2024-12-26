@@ -1,0 +1,34 @@
+﻿@model List<CustomAuth.Entities.Employee>
+
+<h2>Employee List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>EmpId</th>
+            <th>EmpName</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.EmpId</td>
+                <td>@emp.EmpName</td>
+                <td>@emp.Email</td>
+                <td>@emp.Phone</td>
+                <td>@emp.Designation</td>
+                <td>@emp.Department.DeptName</td>
+                <td>
+                    <a href="@Url.Action("EditForm", "Employee", new { id = emp.EmpId })">Edit</a> |
+                    <a href="@Url.Action("Delete", "Employee", new { id = emp.EmpId })" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

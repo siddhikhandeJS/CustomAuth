@@ -1,0 +1,46 @@
+﻿@model CustomAuth.Entities.Employee
+
+<h2>Edit Employee</h2>
+
+<form asp-action="Update" asp-controller="Employee" method="post">
+    <div class="form-group">
+        <label for="EmpId">Employee ID</label>
+        <input type="text" class="form-control" id="EmpId" name="EmpId" value="@Model.EmpId" required readonly/>
+    </div>
+    <div class="form-group">
+        <label for="EmpName">Employee Name</label>
+        <input type="text" class="form-control" id="EmpName" name="EmpName" value="@Model.EmpName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Phone">Phone</label>
+        <input type="tel" class="form-control" id="Phone" name="Phone" value="@Model.Phone" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Designation">Designation</label>
+        <input type="text" class="form-control" id="Designation" name="Designation" value="@Model.Designation" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DeptId">Department:</label>
+        <select id="DeptId" name="DeptId" class="form-control" required>
+            <option value="">-- Select Department --</option>
+            @foreach (var department in ViewBag.Departments)
+            {
+                <option value="@department.DeptId">@department.DeptName</option>
+            }
+        </select>
+    </div>
+
+    <!-- Use an <a> tag for submission -->
+    <a href="javascript:void(0);" class="btn btn-primary" onclick="this.closest('form').submit();">Save Changes</a>
+    
+    <br />
+    <a href="@Url.Action("GetAll", "Employee")" class="btn btn-secondary mt-2">Back to Employee List</a>
+</form>

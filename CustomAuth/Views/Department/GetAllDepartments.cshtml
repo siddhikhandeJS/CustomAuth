@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CustomAuth.Entities.Department>
+
+@{
+    ViewData["Title"] = "All Departments";
+}
+
+<div class="container mt-3">
+    <h2>Departments List</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Department ID</th>
+                <th>Department Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td>@department.DeptId</td>
+                    <td>@department.DeptName</td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("AddDept", "Department")" class="btn btn-primary">Add New Department</a>
+   
+</div>
