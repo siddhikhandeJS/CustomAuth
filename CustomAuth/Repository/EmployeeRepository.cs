@@ -14,46 +14,35 @@ namespace CustomAuth.Repository
         }
 
         public Employee AddEmployee(Employee e)
-        { 
-            var departmentExists = context.Departments.Any(d => d.DeptId == e.DeptId);
-
-            // Check DeptId exists or not
-            if (!departmentExists)  
-            {
-                throw new ArgumentException("The specified DeptId does not exist in the Departments table.");
-            }
-
-            var addEmployee = context.Employees.Add(e).Entity;   //Add employee to context
-            context.SaveChanges();   //save changes to db
-            return addEmployee;
+        {
+            var addedEmployee = context.Employees.Add(e).Entity;
+            context.SaveChanges();
+            return addedEmployee;
         }
       
 
-        public bool Delete(int empId)
+        public void DeleteEmployee(int empId)
         {
             var employee = context.Employees.Find(empId);
             if (employee != null)
             {
                 context.Employees.Remove(employee);
                 context.SaveChanges();
-                return true;
             }
-            return false;
         }
 
-        public List<Employee> GetAll()
+        public IEnumerable<Employee> GetAllEmployees()
         {
             return context.Employees.Include(e => e.Department).ToList();
         }
 
-        public Employee GetById(int id)
+        public Employee GetEmployeeById(int id)
         {
-            var employee = context.Employees.Find(id);
-            return employee;
+            return context.Employees.Include(e => e.Department).FirstOrDefault(e => e.EmpId == id);
         }
 
 
-        public Employee Update(Employee e)
+        public Employee UpdateEmployee(Employee e)
         {
             var employee = context.Employees.Find(e.EmpId); // Fetch the existing employee
             if(employee == null)

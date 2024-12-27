@@ -2,42 +2,40 @@
 using CustomAuth.Repository;
 using CustomAuth.Service;
 
-namespace Assignment1.Service
+namespace CustomAuth.Services
 {
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository employeeRepository;
 
-        // Constructor injection for repository
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
             this.employeeRepository = employeeRepository;
         }
 
+        public IEnumerable<Employee> GetAllEmployees()
+        {
+            return employeeRepository.GetAllEmployees();
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            return employeeRepository.GetEmployeeById(id);
+        }
+
         public Employee AddEmployee(Employee employee)
         {
-            var addEmployee = employeeRepository.AddEmployee(employee);   //calls repo method
-            return addEmployee;
+            return employeeRepository.AddEmployee(employee);
         }
 
-        public bool Delete(int employeeId)
+        public Employee UpdateEmployee(Employee employee)
         {
-            return employeeRepository.Delete(employeeId);
+            return employeeRepository.UpdateEmployee(employee);
         }
 
-        public List<Employee> GetAll()
+        public void DeleteEmployee(int id)
         {
-            return employeeRepository.GetAll();
+            employeeRepository.DeleteEmployee(id);
         }
-
-        public Employee GetById(int employeeId)
-        {
-            return employeeRepository.GetById(employeeId);
-        }
-
-        public Employee Update(Employee employee)
-        {
-            return employeeRepository.Update(employee);            
-        }       
     }
 }

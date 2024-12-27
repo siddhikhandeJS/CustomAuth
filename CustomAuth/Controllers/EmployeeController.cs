@@ -19,7 +19,7 @@ namespace CustomAuth.Controllers
         // Action to display all employees
         public IActionResult GetAll()
         {
-            var employees = employeeService.GetAll();
+            var employees = employeeService.GetAllEmployees();
             return View(employees);
         }
 
@@ -42,14 +42,14 @@ namespace CustomAuth.Controllers
         // Action to display employee details
         public IActionResult Details(int id)
         {
-            var employee = employeeService.GetById(id);
+            var employee = employeeService.GetEmployeeById(id);
             return View(employee);
         }
 
         // Action to delete an employee
         public IActionResult Delete(int id)
         {
-            employeeService.Delete(id);
+            employeeService.DeleteEmployee(id);
             return RedirectToAction("GetAll");
         }
 
@@ -58,7 +58,7 @@ namespace CustomAuth.Controllers
         [HttpPost]
         public IActionResult Update(Employee employee)
         {
-            var updatedEmployee = employeeService.Update(employee);
+            var updatedEmployee = employeeService.UpdateEmployee(employee);
             if (updatedEmployee == null)
             {
                 return NotFound();
@@ -69,7 +69,7 @@ namespace CustomAuth.Controllers
         // Action to render the EditForm view
         public IActionResult EditForm(int id)
         {
-            var employee = employeeService.GetById(id);
+            var employee = employeeService.GetEmployeeById(id);
             if (employee == null)
             {
                 return NotFound();

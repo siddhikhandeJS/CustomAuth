@@ -4,10 +4,10 @@ namespace CustomAuth.Service
 {
     public interface IEmployeeService
     {
+        IEnumerable<Employee> GetAllEmployees();
+        Employee GetEmployeeById(int id);
         Employee AddEmployee(Employee employee);
-        bool Delete(int employeeId);
-        List<Employee> GetAll();
-        Employee GetById(int employeeId);
-        Employee Update(Employee employee);
+        Employee UpdateEmployee(Employee employee);
+        void DeleteEmployee(int id);
     }
 }

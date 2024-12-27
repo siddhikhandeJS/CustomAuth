@@ -1,6 +1,7 @@
 using System.Text;
 using CustomAuth.Data;
-using CustomAuth.Entities;
+using CustomAuth.Repository;
+using CustomAuth.Service;
 using CustomAuth.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,15 @@ builder.Services.AddAuthentication(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register services and repositories for dept
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
+// Register services and repositories for employee
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
 
 var app = builder.Build();
 
