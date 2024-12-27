@@ -13,14 +13,13 @@ namespace CustomAuth.Repository
             this.context = context;
         }
 
-        public Department AddDepartment(Department department)
+        public void AddDepartment(Department department)
         {
-            var addDept = context.Add(department).Entity;
+            context.Departments.Add(department);
             context.SaveChanges();
-            return addDept;
         }
 
-        public List<Department> GetAllDepartments()
+        public IEnumerable<Department> GetAllDepartments()
         {
             return context.Departments.ToList();
         }

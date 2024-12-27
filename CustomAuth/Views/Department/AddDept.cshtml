@@ -1,23 +1,11 @@
 ﻿@model CustomAuth.Entities.Department
 
-@{
-    ViewData["Title"] = "Add Department";
-}
-
-<div class="container mt-3">
-    <h2>Add New Department</h2>
-    <form method="post" asp-action="AddDepartment" asp-controller="Department">
-        <div class="form-group">
-            <label for="DeptName">Department Name</label>
-            <input type="text" id="DeptName" name="DeptName" class="form-control" required />
-        </div>
-
-        <div class="form-group mt-3">
-            <!-- Use the <a> tag for form submission -->
-            <a href="javascript:void(0);" class="btn btn-primary" onclick="this.closest('form').submit();">Add Department</a>
-        </div>
-    </form>
-
-    <br />
-    <a href="@Url.Action("GetAllDepartments", "Department")" class="btn btn-secondary">Department List</a>
-</div>
+<h2>Add Department</h2>
+<form method="post" asp-action="AddDepartment" asp-controller="Department">
+    <div class="form-group">
+        <label for="DeptName">Department Name</label>
+        <input type="text" class="form-control" id="DeptName" name="DeptName" value="@Model.DeptName" required />
+    </div>
+    <button type="submit" class="btn btn-success">Add Department</button>
+    <a href="@Url.Action("GetAllDepartments", "Department")" class="btn btn-secondary">Cancel</a>
+</form>

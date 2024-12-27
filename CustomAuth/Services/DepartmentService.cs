@@ -13,16 +13,16 @@ namespace CustomAuth.Service
             this.departmentRepository = departmentRepository;
         }
 
-        public Department AddDepartment(Department department)
+        public void AddDepartment(Department department)
         {
-            var addDept = departmentRepository.AddDepartment(department);
-            return addDept;
+            departmentRepository.AddDepartment(department);
          
         }
 
-        public List<Department> GetAllDepartments()
+        public IEnumerable<Department> GetAllDepartments()
         {
             return departmentRepository.GetAllDepartments();
         }
+
     }
 }
